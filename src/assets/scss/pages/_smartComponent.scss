@@ -1,0 +1,219 @@
+// 스마트 편집 > 컴포넌트 > 입력폼 > 입력 항목 설정 > 선택 옵션
+@mixin options() {
+  .selectOption {
+    overflow: auto;
+    height: 138px;
+
+    border: 1px solid #ddd;
+    background-color: $gray-50;
+
+    @include scrollbar();
+
+    & > div > div:first-of-type:not(.tool) {
+      padding-left: 5px;
+    }
+
+    &.move {
+      cursor: move;
+      * {
+        cursor: inherit;
+      }
+      .moveItem .mdi.mdiDragVertical {
+        color: $primary;
+      }
+    }
+
+    .tool {
+      @include flex-center();
+      padding: 0 2px 0 10px;
+
+      a {
+        @include flex-center();
+        padding: 2.5px;
+        border-radius: 50%;
+        color: #fff;
+      }
+
+      .plus {
+        background-color: $primary;
+      }
+      .minus {
+        background-color: $red;
+      }
+
+      .mdi.mdiDragVertical {
+        cursor: move;
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+// 스마트 편집 > 컴포넌트 > 입력폼 > * 레이어 팝업
+.modal-bg.smartInputForm {
+  // 입력 항목 설정
+  &.smartLayerInputItemEditor {
+    .modal-body > * {
+      min-width: 1160px;
+    }
+
+    .modal-body {
+      :is(.itemWrap, .editWrap) {
+        padding: 10px;
+        .subTitle {
+          margin-bottom: 20px;
+          span {
+            @include font-lg;
+          }
+        }
+      }
+
+      .itemWrap {
+        border: 1px solid $gray-300;
+
+        .itemList {
+          height: calc(48px * 13 - 8px);
+          overflow: overlay;
+          @include scrollbar;
+
+          li {
+            @include font-sm;
+            @include size(100%, 40px);
+            margin-bottom: 8px;
+            padding: 0 10px;
+            border: 1px solid $gray-300;
+            transition: all 0.3s ease-in-out;
+
+            &.on {
+              border: 1px solid $primary;
+              background: $info-box-bg;
+
+              a {
+                color: $primary;
+              }
+            }
+
+            &.useN {
+              color: $gray-500;
+              background-color: $gray-100;
+            }
+
+            &:hover {
+              border-color: $primary;
+              a {
+                color: $primary;
+              }
+            }
+
+            a {
+              display: flex;
+              align-items: center;
+              height: 100%;
+
+              > div {
+                width: 300px;
+                @include ellipsis(1);
+              }
+            }
+          }
+        }
+      }
+
+      .editWrap {
+        .inputRange {
+          @include sizeXYInput('~', 12px);
+        }
+
+        @include options();
+      }
+    }
+  }
+
+  // 입력폼 등록
+  &.smartLayerGroupEditor {
+    .modal-body > * {
+      min-width: 1160px;
+
+      .list-table tbody tr {
+        &:nth-child(n + 10):last-child td {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// 스마트 편집 > 컴포넌트 > 댓글 > * 레이어 팝업
+.modal-bg.smartComment {
+  &.smartLayerGroupEditor .modal-body .commentSize {
+    @include sizeXYInput('X');
+  }
+
+  &.smartLayerCommentEditor {
+    .modal-body > * {
+      min-width: 900px;
+    }
+
+    .list-table {
+      thead th:nth-of-type(4) {
+        @include pseudoRequired();
+      }
+      tbody tr td {
+        padding: 5px;
+        &.dlWrapper {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+// 스마트 편집 > 컴포넌트 > 롤링 리스트 > * 레이어 팝업
+.modal-bg.smartListRolling {
+  &.smartLayerGroupEditor .modal-body .listSize {
+    @include sizeXYInput('X');
+  }
+
+  &.smartLayerListRollingEditor {
+    .modal-body > * {
+      min-width: 1160px;
+    }
+
+    .list-table {
+      thead th:nth-of-type(3) {
+        @include pseudoRequired();
+      }
+      tbody tr td {
+        padding: 5px;
+      }
+    }
+  }
+}
+
+// 스마트 편집 > 컴포넌트 > 롤링 배너 > * 레이어 팝업
+.modal-bg.smartRollingBanner {
+  &.smartLayerGroupEditor .modal-body .componentSize {
+    @include sizeXYInput('X');
+  }
+
+  &.smartLayerBannerEditor {
+    .modal-body > * {
+      min-width: 900px;
+    }
+
+    .list-table {
+      thead th:nth-of-type(3) {
+        @include pseudoRequired();
+      }
+
+      tbody tr td {
+        padding: 5px;
+        &.dlWrapper {
+          padding: 0;
+        }
+      }
+    }
+  }
+}

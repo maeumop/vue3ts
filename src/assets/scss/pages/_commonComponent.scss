@@ -1,0 +1,667 @@
+.component.tabMenu {
+  height: 100%;
+
+  .headerLayout {
+    position: relative;
+    display: flex;
+    z-index: 1;
+
+    &::after {
+      @include pseudo();
+      bottom: 0;
+      @include size(100%, 1px);
+      background: $gray-300;
+    }
+
+    > li {
+      position: relative;
+      @include flex_center();
+      @include size(max-content, 60px);
+      min-width: 100px;
+
+      cursor: pointer;
+
+      > button {
+        @include size(100%);
+        padding: 0 8px;
+        @include font-m-2;
+      }
+
+      &:hover,
+      &.active {
+        color: $primary;
+        &::after {
+          @include pseudo();
+          bottom: 1px;
+          @include size(100%, 2px);
+          background: $primary;
+          border-radius: 0.2rem;
+        }
+      }
+      &:not(.active):hover {
+        color: inherit;
+        &::after {
+          background: $primary-light;
+        }
+      }
+    }
+  }
+
+  .bodyLayout {
+    display: flex;
+    height: calc(100% - 60px);
+    overflow: hidden;
+    > .tabMenuItem {
+      flex: 1 0 100%;
+    }
+  }
+}
+
+.component.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+
+  > span {
+    padding: 0 4px;
+    @include font-lg();
+    cursor: pointer;
+
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+  }
+
+  > .mdiWrapper {
+    transform: rotate(90deg);
+  }
+}
+
+.component.contextMenu {
+  position: fixed;
+
+  .wrapper {
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+    ul {
+      li {
+        display: flex;
+        align-items: center;
+        padding: 0 32px 0 8px;
+        height: 40px;
+
+        cursor: pointer;
+        &:not(:last-child) {
+          position: relative;
+          &::after {
+            @include pseudo();
+            bottom: 0;
+            left: 0;
+            @include size(100%, 1px);
+            background: $gray-200;
+          }
+        }
+
+        &:hover {
+          background: $gray-100;
+        }
+
+        > svg.mdi {
+          margin-right: 7px;
+          color: $gray-600;
+        }
+      }
+    }
+  }
+}
+
+.component.treeView {
+  .component-wrapper {
+    height: inherit;
+    overflow: auto;
+    @include scrollbar();
+    ul {
+      @include flex_column();
+      align-items: center;
+      width: 100%;
+
+      li {
+        width: inherit;
+        &.opend {
+          // 오픈된 상태
+          > .treeViewItemWrapper > .chevronWrapper > div {
+            transform: rotate(0deg);
+          }
+        }
+        &.active {
+          // 선택된 상태
+          > .treeViewItemWrapper {
+            background: $gray-100;
+            color: $primary;
+            svg.mdi {
+              color: inherit;
+            }
+          }
+        }
+
+        > .treeViewItemWrapper {
+          display: flex;
+          padding: 6px 0;
+          // 14.5px
+          border-radius: 0.906rem;
+          cursor: pointer;
+          &:hover {
+            background: $gray-100;
+          }
+
+          > div {
+            display: flex;
+            align-items: center;
+            &.chevronWrapper {
+              // 10px
+              padding-left: 0.625rem;
+              > div {
+                @include flex_center();
+                transform: rotate(-90deg);
+                transition: all 0.3s ease-in-out;
+              }
+            }
+
+            &.titleWrapper {
+              width: calc(100% - 40px);
+              > .title {
+                width: inherit;
+                font-size: $font-m-2-size;
+
+                > div {
+                  // 10px
+                  padding-right: 0.625rem;
+                  @include ellipsis(1);
+                  @include tooltip_over(
+                    attr(toggle-content),
+                    var(--toggle-y),
+                    var(--toggle-x)
+                  );
+                }
+              }
+              > svg.mdi {
+                margin: 0 4px;
+              }
+            }
+          }
+          svg.mdi {
+            color: $gray-600;
+          }
+        }
+
+        > ul.children {
+          @include flex_center_column();
+          width: 100%;
+          // 20px
+          margin-left: 1.25rem;
+        }
+      }
+    }
+  }
+}
+
+.component.ftpImage {
+  position: relative;
+  .btnWrap {
+    @include flex_center();
+    @include size(100%);
+    border: 1px solid $gray-300;
+    background: $gray-50;
+
+    overflow: hidden;
+
+    &:not(.readonly) {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      cursor: inherit;
+
+      span {
+        @include font-xs();
+      }
+    }
+
+    .iconWrap {
+      @include flex_center;
+      width: 100%;
+    }
+
+    .iconTextWrap {
+      width: 100%;
+    }
+
+    svg.mdi,
+    span {
+      color: $gray-400;
+    }
+
+    > img {
+      @include size(100%, 100%);
+      object-fit: contain;
+    }
+  }
+
+  svg.mdi {
+    @include size(100%, 100%);
+    max-width: 40%;
+    max-height: 40%;
+  }
+
+  .over {
+    @include abs-position(0,0,0,0);
+    @include flex_center;
+    transition: all .25s ease;
+    cursor: pointer;
+
+    svg {
+      color: $white;
+      opacity: 0;
+    }
+  }
+
+  &:hover:has(.over.show) {
+    .btnWrap {
+      @include abs-position(0,0,0,0);
+    }
+    .over {
+      background: rgba(0, 0, 0, 0.5);
+
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.component.ftpContents {
+  display: flex;
+
+  input[type='file'] {
+    display: none;
+  }
+
+  .observer {
+    visibility: hidden;
+  }
+
+  > div.layout {
+    position: relative;
+    width: 100%;
+    height: inherit;
+
+    &:not(:last-of-type) {
+      &::after {
+        @include pseudo();
+        top: 0;
+        right: 0;
+        @include size(1px, 100%);
+        background: $gray-300;
+      }
+    }
+
+    &:last-of-type {
+      > div {
+        &:nth-of-type(2) {
+          min-height: 32px;
+        }
+
+        &:nth-of-type(3) {
+          position: relative;
+          padding: 3px 10px;
+          min-height: 30px;
+          background: $gray-100;
+
+          &.is-scroll::after {
+            position: absolute;
+            left: 0;
+            @include size(100%, 6px);
+            background: -webkit-gradient(
+              linear,
+              left top,
+              left bottom,
+              from(rgba(0, 0, 0, 0.1)),
+              to(rgba(0, 0, 0, 0))
+            );
+            background: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0.1),
+              rgba(0, 0, 0, 0)
+            );
+            z-index: 20;
+            content: '';
+          }
+
+          > .check-button {
+            display: contents;
+          }
+        }
+
+        &.contentsLayout {
+          padding: 10px;
+          height: calc(100% - 128px);
+          overflow-y: auto;
+          @include scrollbar();
+
+          > div {
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+
+        .no-data {
+          @include flex-center();
+          width: 100%;
+          height: 40px;
+
+          border: 1px solid $gray-200;
+        }
+      }
+    }
+  }
+}
+
+.component.ftpContentItem {
+  $objectWidth: 140px;
+  $objectHeight: 140px;
+
+  flex-grow: 1;
+  padding: 5px;
+  height: 200px;
+
+  &.blank {
+    width: $objectWidth + 10px;
+  }
+
+  > .wrapper {
+    @include flex_center();
+    flex-direction: column;
+
+    cursor: pointer;
+
+    @include tooltip_over(
+      attr(toggle-content),
+      var(--toggle-y),
+      var(--toggle-x)
+    );
+
+    &:hover {
+      > div:first-child {
+        border-color: $gray-500;
+        background: $info-box-bg;
+        .objectWrapper > i {
+          color: $primary;
+        }
+      }
+    }
+    &.checked {
+      > div:first-child {
+        border-color: $primary;
+        .objectWrapper > .checkboxWrapper {
+          svg.mdi {
+            color: $primary;
+          }
+        }
+      }
+    }
+
+    > div {
+      @include flex_center();
+      width: $objectWidth;
+    }
+
+    > div:first-child {
+      position: relative;
+      padding: 10px;
+      height: $objectHeight;
+      border: 1px solid $gray-200;
+      box-sizing: border-box;
+
+      .objectWrapper {
+        @include flex_center();
+        @include size(100%);
+        > svg.mdi {
+          display: flex;
+
+          &.dir {
+            color: rgb(251 228 100);
+          }
+        }
+        > img {
+          @include size(inherit);
+          object-fit: contain;
+        }
+
+        > .checkboxWrapper {
+          @include abs-position(0, unset, unset, 0);
+          width: 100%;
+
+          .label {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px;
+          }
+
+          svg.mdi {
+            display: inherit;
+            color: $gray-400;
+          }
+        }
+
+        .checkedIndexWrapper {
+          @include abs-position(-12px, -12px, unset, unset);
+          @include size(25px, 25px);
+          @include font-sm();
+          @include flex_center();
+          border-radius: 50%;
+          color: white;
+          background: $primary;
+          z-index: 30;
+        }
+      }
+    }
+
+    > div:nth-child(2) {
+      display: block;
+      padding: 0 8px;
+      @include font-m();
+      text-align: center;
+      @include ellipsis(1);
+    }
+
+    > div:nth-child(3) {
+      @include font-xs();
+      color: $gray-600;
+    }
+  }
+
+  .check-scale-enter-from,
+  .check-scale-leave-to {
+    opacity: 0;
+    transform: scale(0);
+  }
+  .check-scale-enter-active,
+  .check-scale-leave-active {
+    transition: all 0.1s ease;
+  }
+}
+
+.modal-bg.ftpMutipleActionList {
+  .modal-body .actionList > .actionItem {
+    width: 100%;
+    &:not(:first-child) {
+      margin-top: 4px;
+    }
+  }
+  .actionItem {
+    @include flex_center_between();
+    padding: 15px 10px;
+    border: 1px solid $gray-400;
+    > div {
+      @include flex_center();
+
+      &:nth-of-type(2) {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        width: calc(100% - 40px - 40px);
+        padding: 0 10px;
+        > div {
+          width: inherit;
+
+          &:last-of-type {
+            width: 100%;
+            @include font-xs();
+          }
+
+          > .contents {
+            display: flex;
+            align-items: center;
+
+            &:not(.progressbar) {
+              margin-right: 10%;
+              @include ellipsis(1);
+
+              > svg.mdi {
+                margin-right: 4px;
+                vertical-align: text-bottom;
+              }
+            }
+          }
+        }
+
+        > .title {
+          width: 80%;
+          @include font-sm();
+          @include ellipsis(1);
+        }
+        > .capacity {
+          width: 20%;
+          @include font-xs();
+          text-align: right;
+          color: $gray-600;
+        }
+
+        .red {
+          color: $red;
+        }
+      }
+
+      &:last-of-type {
+        padding: 7.5px;
+      }
+    }
+
+    svg.mdi {
+      &.green {
+        color: $green;
+      }
+      &.red {
+        color: $red;
+      }
+    }
+  }
+
+  .progressbar {
+    background: $gray-100;
+    text-align: right;
+    border-radius: 10px;
+
+    span {
+      display: block;
+      height: 20px;
+      padding-right: 5px;
+      background: $primary;
+      color: #fff;
+      border-radius: 10px;
+      line-height: 20px;
+    }
+  }
+}
+
+.codeMirrorForm.input-wrap {
+  display: inline-block;
+  position: relative;
+
+  .v-codemirror {
+    .cm-editor {
+      border: 1px solid #e0e0e0;
+
+      &.cm-focused {
+        outline: none;
+      }
+
+      .cm-content {
+        padding: 0;
+      }
+
+      .cm-line {
+        white-space: pre-wrap;
+      }
+    }
+
+    &:not(.error) .cm-editor.cm-focused {
+      border: 1px solid $primary;
+    }
+
+    &.error .cm-editor {
+      border: 1px solid $red;
+    }
+
+    &.readonly,
+    &.disabled {
+      .cm-editor {
+        .cm-activeLine,
+        .cm-activeLineGutter {
+          background-color: transparent;
+        }
+      }
+    }
+
+    &.disabled .cm-editor .cm-line {
+      background-color: $gray-100;
+      color: $gray-400;
+    }
+  }
+}
+
+.modal-bg.imageViewer {
+  background-color: rgba(0, 0, 0, 0.9);
+  .modal-box {
+    background: transparent;
+    &.screen-cover {
+      min-width: initial;
+      .modal-body {
+        @include flex-center();
+        margin: 0 auto;
+        max-width: 1080px;
+        height: calc(95vh - 40px) !important;
+        overflow: hidden;
+        > img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+  }
+  .close {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    color: white;
+  }
+}

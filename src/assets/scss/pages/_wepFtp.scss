@@ -1,0 +1,27 @@
+#pageWebFtp {
+  @at-root #container .contentWrap #pageFtpLayout.content {
+    overflow: hidden;
+  }
+  height: 100%;
+
+  // 공통 layout style
+  .tabMenu .tabMenuItem {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    > .layout {
+      width: 100%;
+    }
+  }
+
+  // 특정 탭 style
+  .tabMenu .tabMenuItem.fileManage {
+    > .layout {
+      height: inherit;
+      > .component {
+        height: inherit;
+      }
+    }
+  }
+}

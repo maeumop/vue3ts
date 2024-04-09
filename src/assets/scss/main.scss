@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+@import url('https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css');
+
+// 1. abstracts
+// @import
+//   'abstracts/variables',
+//   'abstracts/mixins',
+//   'abstracts/functions';
+
+// 2. vendors
+
+// 3. base
+@import 'base/base', 'base/fonts', 'base/transition';
+
+// 4. layout
+@import 'layout/layout', 'layout/gnb', 'layout/utilities';
+
+// 5. pages
+@import 'pages/mypage', 'pages/database', 'pages/_settings.scss', 'pages/_editor.scss', 'pages/_page.scss', 'pages/_smartComponent', 'pages/member.scss', 'pages/wepFtp', 'pages/commonComponent', 'pages/myApp.scss', 'pages/ad.scss';

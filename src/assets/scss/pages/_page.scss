@@ -1,0 +1,24 @@
+#createLink {
+  .set-box {width: 300px;}
+  .list-box {
+    width: calc(100% - 320px);
+
+    .link {word-break: break-all;}
+  }
+}
+
+#defaultPage {
+  .textField-tooltip {
+    position: relative;
+
+    .tooltip-wrap {
+      position: absolute;
+      right: 8px;
+      bottom: 10px;
+      z-index: 10;
+      svg {
+        color: $gray-500;
+      }
+    }
+  }
+}

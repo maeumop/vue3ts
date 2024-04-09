@@ -1,0 +1,272 @@
+// 매체코드 관리, UTM 관리
+#pageAd {
+  display: flex;
+
+  & > div + div {
+    border-left: 1px solid $gray-300;
+  }
+
+  .itemWrap {
+    padding: 20px;
+    overflow: overlay;
+    @include scrollbar;
+  }
+
+  .subTitle {
+    @include flex_center_between;
+    height: 32px;
+    margin-bottom: 15px;
+
+    span {
+      @include font-lg;
+    }
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .searchBox {
+    width: 100%;
+    // margin: 0 0 8px;
+
+    .input-wrap .with-slot input + * {
+      margin-right: 0 !important;
+    }
+  }
+
+  .itemList,
+  .subItemList {
+    li {
+      @include font-sm;
+      width: 100%;
+      height: 40px;
+      margin-bottom: 8px;
+      padding: 0 10px;
+      border: 1px solid $gray-300;
+      transition: all .3s ease-in-out;
+
+      &.on {
+        border: 1px solid $primary;
+        background: $info-box-bg;
+
+        a {
+          color: $primary;
+        }
+      }
+
+      &:hover {
+        border-color: $primary;
+
+        a {
+          color: $primary;
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.subItemList {
+      li {
+        @include flex_center_between;
+
+        a + a {
+          width: 20px;
+          justify-content: end;
+          color: $gray-400;
+
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+
+      .noList {
+        justify-content: center;
+
+        &:hover {
+          border-color: $gray-300;
+        }
+      }
+    }
+  }
+
+  .subItemWrap {
+    padding: 0 20px;
+    overflow: overlay;
+    @include scrollbar;
+
+    .fixedArea {
+      position: sticky;
+      top: 0;
+      padding: 20px 0 8px;
+      background: #fff;
+      z-index: 10;
+    }
+  }
+
+  .resisterWrap {
+    display: flex;
+    overflow: overlay;
+    @include scrollbar;
+
+    .info {
+      @include flex_center;
+      flex-direction: column;
+      width: 100%;
+      margin-top: -20px;
+
+      svg {
+        font-size: 100px;
+        color: $primary;
+      }
+
+      span {
+        @include font-lg;
+        color: $primary;
+        padding-bottom: 8px;
+      }
+    }
+
+    .resisterBox {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .subTitle {
+        margin: 20px 0 15px;
+        padding: 0 20px 0;
+
+        span {
+          @include font-lg;
+        }
+      }
+
+      .inputContainer {
+        width: 100%;
+        padding: 0 20px;
+        flex: 1;
+
+        .imgContainer {
+          margin-top: 10px;
+          max-height: 350px;
+          overflow-y: auto;
+          @include scrollbar;
+
+          .imgWrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 8px 10px 8px 5px;
+            border: 1px solid $gray-300;
+            transition: all .25s ease;
+
+            &:first-child {
+              margin-top: 0;
+            }
+
+            &:hover {
+              background: rgba(3, 54, 255, 0.05);
+              border-color: $primary;
+            }
+
+            .imgBox {
+              display: flex;
+              align-items: center;
+
+              .img {
+                position: relative;
+                @include size(50px);
+                margin-right: 20px;
+                overflow: hidden;
+
+                // FTPImage 커스텀
+                .btnWrap {
+                  padding: 0 !important;
+                  // border: 0 !important;
+
+                  &.error {
+                    pointer-events: none;
+                  }
+                }
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+
+                .over {
+                  position: absolute;
+                  z-index: 20;
+                  left: 0;
+                  top: 0;
+                  bottom: 0;
+                  right: 0;
+                  @include flex_center;
+                  transition: all .25s ease;
+
+                  svg {
+                    color: $white;
+                    opacity: 0;
+                  }
+                }
+
+                &:hover {
+                  .over {
+                    background: rgba(0, 0, 0, 0.5);
+
+                    svg {
+                      opacity: 1;
+                    }
+                  }
+                }
+              }
+
+              .imgInfo {
+                span {
+                  display: block;
+
+                  &.detail {
+                    margin-top: 5px;
+                    color: $gray-500;
+                    @include font-sm;
+                  }
+                }
+              }
+            }
+
+            & > a {
+              color: $gray-400;
+              transition: all .25s ease;
+
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
+        }
+      }
+
+      .resisterBtn {
+        width: 100%;
+        height: 60px;
+        margin-top: 20px;
+        padding-right: 10px;
+        border-top: 1px solid $gray-300;
+
+        & > div {
+          margin-top: 10px;
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+

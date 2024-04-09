@@ -1,0 +1,290 @@
+// 고객 DB 관리 전체
+
+#databaseList {
+  .rotate {
+    transform: rotate(-180deg);
+    transition: all 0.5s;
+  }
+
+  .textField-label {
+    .switch-wrap {
+      .switch {
+        @include font($size: 13px);
+
+        i {
+          @include font($size: 15px);
+        }
+      }
+    }
+  }
+
+  .label {
+    display: inline-flex;
+    align-items: center;
+    @include font-sm;
+    padding: 4px 6px;
+    color: #fff;
+    background: $primary-dark-deep;
+
+    svg {
+      margin-left: 3px;
+    }
+
+    & + span {
+      margin-left: 4px;
+    }
+  }
+}
+
+#uploadResult {
+  .resultBox {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      column-gap: 2px;
+    }
+  }
+
+
+  .progressbar {
+    @include progressbar;
+  }
+
+  .reason {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    & > .icon {
+      color: $gray-400;
+    }
+  }
+
+  .label {
+    @include font-sm;
+    padding: 4px 6px;
+    color: #fff;
+    background: $primary-dark-deep;
+
+    & + span {
+      margin-left: 4px;
+    }
+  }
+
+  th, td {
+    word-break: keep-all;
+  }
+
+  .text-dark {
+    color: map-get($theme-colors, 'dark');
+  }
+}
+
+.tooltip-popup {
+  padding: 20px;
+
+  .log-box {
+    @include scrollbar;
+    overflow: auto;
+    border: 1px solid $gray-300;
+    padding: 16px;
+    width: 460px;
+    height: 80px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  ul {
+    padding-left: 15px;
+
+    li {
+      font-size: 12px;
+      line-height: 1.5;
+      list-style: outside;
+
+      &::marker {
+        font-size: 0.8em;
+      }
+
+      ul {
+        padding-left: 10px;
+
+        li {
+          position: relative;
+          list-style: none;
+
+          &::before {
+            position: absolute;
+            left: -10px;
+            content: '- ';
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// API 연동
+#ApiSettingForm {
+  .params-setting {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid $gray-300;
+
+    .required::after {
+      content: ' *';
+      color: $red;
+    }
+
+    li {
+      align-self: stretch;
+
+      &.setting {
+        flex: 1.5;
+        padding-bottom: 5px;
+      }
+
+      &.json-viewer {
+        width: 800px;
+        border-left: 1px solid $gray-300;
+        padding: 10px;
+        background-color: $gray-800;
+
+        pre {
+          max-width: 100%;
+          font-size: 18px;
+          color: $gray-200;
+          word-break: break-all;
+          overflow-x: auto;
+          height: 100%;
+        }
+      }
+
+      .header {
+        background-color: $gray-200;
+        padding: 8px 0;
+      }
+
+      .tool {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          color: #fff;
+        }
+
+        .plus {
+          background-color: $primary;
+        }
+        .minus {
+          background-color: $red;
+        }
+      }
+    }
+  }
+}
+
+
+// API 연동 > 변환코드 정보
+.codeInfo.table-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .table-content {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    background-color: #fff;
+    border: 1px solid $gray-300;
+
+    .list-table {
+      thead tr th {
+        border-top: 0 !important;
+      }
+
+      tbody tr:last-child td {
+        border: 0 !important;
+      }
+    }
+  }
+}
+
+
+// DB 필터 관리
+#databaseFilter {
+  h3 {
+    padding: 20px 16px;
+    @include font($size: 18px, $weight: 500);
+  }
+
+  .date-check {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 0px 16px 20px;
+
+    .box {
+      position: relative;
+
+      .text {
+        position: absolute;
+        right: 0;
+        width: 40px;
+        text-align: center;
+      }
+    }
+  }
+
+  h4 {
+    margin-bottom: 8px;
+    @include font($size: 16px);
+  }
+
+  .filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 16px;
+
+    & > :not(.switch) {
+      width: 400px;
+    }
+
+    .switch {
+      width: 100px;
+      margin-right: 20px;
+    }
+
+    .desc {
+      width: 100%;
+    }
+  }
+
+  .filter-input {
+    padding: 0px 16px 20px;
+  }
+
+  .save-box {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 20px 16px;
+    border-top: 1px solid $gray-300;
+  }
+}

@@ -1,0 +1,376 @@
+@charset "utf-8";
+
+/// 요소 크기 설정
+/// @param {Length} $width
+/// @param {Length} $height
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/// 특정 배수에 스타일 설정
+@mixin col-mod($n, $max) {
+  %mod-#{$n} {
+    @content;
+  }
+  $i: $n;
+  @while $i <= $max {
+    .col-#{$i} {
+      @extend %mod-#{$n};
+    }
+    $i: $i + $n;
+  }
+}
+
+/// 클래스명 포함
+@mixin start-with($name) {
+  div[class^='$name'],
+  div[class*='$name'] {
+    @content;
+  }
+}
+
+/// 버튼 정사각형 + radius 설정
+@mixin button-size($size, $radius: 0) {
+  width: $size;
+  height: $size;
+
+  @if $radius != 0 {
+    border-radius: $radius;
+  }
+}
+
+/// 버튼 색상
+@mixin button-color($color) {
+  background: $color;
+  border: 1px solid $color;
+  &:hover {
+    background: darken($color, 10%);
+  }
+  &:active {
+    background: lighten($color, 10%);
+  }
+  &.outline {
+    color: $color;
+    background: none;
+    border: 1px solid $color;
+    &:hover {
+      background: $color;
+      color: #ffffff;
+    }
+  }
+}
+
+/// hover + on
+@mixin hover {
+  &:hover {
+    @content;
+  }
+  &.on {
+    @content;
+  }
+}
+
+/// absolute position
+@mixin abs-position($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+/// 세로 가운데 정렬
+@mixin vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}
+
+/// flex
+@mixin flex_center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex_center_column {
+  @include flex_center;
+  flex-direction: column;
+}
+
+@mixin flex_center_between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex_center_around() {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin flex-center-evenly() {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@mixin flex-start-center() {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/// grid 가운데 정렬
+@mixin grid_center() {
+  display: grid;
+  place-items: center;
+}
+
+/// background image
+@mixin bg_img($name, $path: '/images/', $format: 'jpg') {
+  background-image: url('#{$path}#{$name}.#{$format}');
+}
+// .photo {
+//   @include bgImg('photo', $format:'jpg');
+// }
+
+@mixin bg_cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/// ellipsis
+@mixin ellipsis($lines: 1) {
+  @if ($lines==1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  }
+}
+
+/// font
+@mixin font-head {
+  font-size: $font-head-size;
+  font-weight: $font-head-weight;
+  line-height: $font-head-height;
+}
+
+@mixin font-xl {
+  font-size: $font-xl-size;
+  font-weight: $font-xl-weight;
+  line-height: $font-xl-height;
+}
+
+@mixin font-lg {
+  font-size: $font-lg-size;
+  font-weight: $font-lg-weight;
+  line-height: $font-lg-height;
+}
+
+@mixin font-m-2 {
+  font-size: $font-m-2-size;
+  font-weight: $font-m-2-weight;
+  line-height: $font-m-2-height;
+}
+
+@mixin font-m {
+  font-size: $font-m-size;
+  font-weight: $font-m-weight;
+  line-height: $font-m-height;
+}
+
+@mixin font-m-bold {
+  font-size: $font-m-size;
+  font-weight: $font-m-bold-weight;
+  line-height: $font-m-height;
+}
+
+@mixin font-sm {
+  font-size: $font-sm-size;
+  font-weight: $font-sm-weight;
+  line-height: $font-sm-height;
+}
+
+@mixin font-xs {
+  font-size: $font-xs-size;
+  font-weight: $font-xs-weight;
+  line-height: $font-xs-height;
+}
+
+@mixin font($size: false, $color: false, $weight: false, $line-height: false) {
+  @if $size {
+    font-size: $size;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $line-height {
+    line-height: $line-height;
+  }
+}
+
+/// pseudo
+/// ::before, ::after에 적용
+@mixin pseudo($display: block, $position: absolute, $content: '') {
+  display: $display;
+  position: $position;
+  content: $content;
+}
+
+/// scrollbar
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 30%;
+    // 스크롤바의 색상
+    background: $gray-400;
+
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    // 스크롤바 뒷 배경 색상
+    background: $gray-200;
+  }
+}
+
+/// placeholder
+@mixin input_placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+/// keyframes
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin logo {
+  height: 22px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg width='160' height='22' viewBox='0 0 160 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.1919 1.61236C11.7678 0.587183 10.9174 0.0117188 9.74086 0.0117188C8.66453 0.0117188 7.7651 0.587183 7.33883 1.61236L0.136996 18.7697C-0.289274 19.7459 0.311767 20.997 1.48827 21.3956C2.76495 21.8453 4.0395 21.2954 4.51479 20.0954L5.61457 17.2671H13.8927L15.0181 20.0954C15.4934 21.2698 16.7679 21.8453 18.019 21.3956C19.17 20.9693 19.7454 19.7693 19.3447 18.7697L12.1919 1.61236ZM7.16406 13.3689L9.74086 6.86614L12.3177 13.3689H7.16619H7.16406Z' fill='%230336FF'/%3E%3Cpath d='M29.6988 0.327148H24.6219C23.1214 0.327148 22.1218 1.32888 22.1218 2.82935V18.7356C22.1218 20.2361 23.1214 21.2357 24.6219 21.2357H29.6732C36.1525 21.2357 39.5541 16.8345 39.5541 10.7558C39.5541 4.67724 36.1525 0.327148 29.6988 0.327148ZM29.3237 17.2842H26.5721V4.27867H29.3237C33.5246 4.27867 35.1018 6.80646 35.1018 10.7558C35.1018 14.7052 33.5011 17.2842 29.3237 17.2842Z' fill='%230336FF'/%3E%3Cpath d='M76.4373 0.000976563C75.3375 0.000976563 74.7364 0.65317 74.2867 1.52702L68.2337 13.4562L62.1316 1.52702C61.7565 0.625462 61.0063 0.000976562 60.0045 0.000976562C58.7534 0.000976562 57.8796 0.827941 57.8796 2.12806V19.4346C57.8796 20.7369 58.7556 21.5617 60.0045 21.5617C61.2535 21.5617 62.1316 20.7369 62.1316 19.4346V10.0823L65.7826 17.4589C66.2835 18.4585 67.0572 19.0595 68.2337 19.0595C69.3079 19.0595 70.1348 18.4585 70.6357 17.4589L74.3123 10.0823V19.4346C74.3123 20.7369 75.1861 21.5617 76.4373 21.5617C77.6884 21.5617 78.5622 20.7369 78.5622 19.4346V2.12806C78.5622 0.827941 77.6862 0.000976563 76.4373 0.000976563Z' fill='%230336FF'/%3E%3Cpath d='M93.7694 1.61236C93.3431 0.587183 92.4927 0.0117188 91.3183 0.0117188C90.242 0.0117188 89.3426 0.587183 88.9184 1.61236L81.7144 18.7697C81.2882 19.7459 81.8892 20.997 83.0657 21.3956C84.3403 21.8453 85.6169 21.2954 86.0922 20.0954L87.192 17.2671H95.4702L96.5955 20.0954C97.0708 21.2698 98.3475 21.8453 99.5965 21.3956C100.747 20.9693 101.323 19.7693 100.922 18.7697L93.7694 1.61236ZM88.7415 13.3689L91.3183 6.86614L93.8951 13.3689H88.7436H88.7415Z' fill='%230336FF'/%3E%3Cpath d='M114.026 9.05509L119.452 3.62654C120.377 2.70153 120.354 1.50158 119.478 0.625595C118.602 -0.25039 117.302 -0.173662 116.477 0.651171L108.199 8.92934V2.13033C108.199 0.828073 107.197 0.00110905 105.948 0.00110905C104.699 0.00110905 103.697 0.828073 103.697 2.13033V19.4348C103.697 20.737 104.699 21.5619 105.948 21.5619C107.197 21.5619 108.199 20.737 108.199 19.4348V14.8822L111.025 12.056L117.052 20.5836C117.802 21.6599 119.002 21.8091 120.004 21.1079C121.029 20.3832 121.155 19.1087 120.479 18.156L114.028 9.05296L114.026 9.05509Z' fill='%230336FF'/%3E%3Cpath d='M137.937 17.2348H128.282V12.7334H137.061C138.136 12.7334 138.862 11.7594 138.862 10.7577C138.862 9.75593 138.136 8.78191 137.061 8.78191H128.282V4.32738H137.385C138.46 4.32738 139.186 3.32778 139.186 2.32605C139.186 1.32431 138.462 0.324707 137.385 0.324707H126.33C124.83 0.324707 123.828 1.32644 123.828 2.82691V18.7353C123.828 20.2358 124.83 21.2354 126.33 21.2354H137.935C139.009 21.2354 139.736 20.2358 139.736 19.2362C139.736 18.2366 139.012 17.2348 137.935 17.2348H137.937Z' fill='%230336FF'/%3E%3Cpath d='M159.671 18.1691L156.469 12.7917C158.746 11.6152 159.745 9.31546 159.745 6.88785C159.745 3.38604 157.695 0.15918 152.693 0.15918H145.64C144.14 0.15918 143.14 1.15878 143.14 2.66139V19.2689C143.14 20.569 144.116 21.3938 145.367 21.3938C146.618 21.3938 147.592 20.569 147.592 19.2689V13.6165H152.094L156.071 20.3196C156.721 21.4471 157.923 21.6965 158.974 21.0699C160.05 20.4198 160.274 19.1687 159.673 18.1691H159.671ZM152.318 9.66287H147.59V4.1107H152.318C154.568 4.1107 155.293 5.38738 155.293 6.88785C155.293 8.38833 154.568 9.66287 152.318 9.66287Z' fill='%230336FF'/%3E%3Cpath d='M50.5775 6.51465H46.7326C45.7713 6.51465 44.9913 7.29472 44.9913 8.25383V12.1009C44.9913 13.0622 45.7713 13.8401 46.7326 13.8401H48.8021C48.5016 15.0294 46.6878 16.3849 46.6878 16.3849C48.5336 16.2592 49.8614 15.5026 50.7267 14.7566C51.1999 14.3495 51.7711 13.6419 51.9693 13.2476C52.1952 12.7979 52.321 12.4398 52.321 12.1009V8.25383C52.321 7.29472 51.5409 6.51465 50.5797 6.51465H50.5775Z' fill='%230336FF'/%3E%3C/svg%3E");
+}
+
+// tooltip_over
+@mixin tooltip_over($content: '', $top: 0px, $left: 0px, $pseudo: 'after') {
+  &::#{$pseudo} {
+    @include pseudo(block, fixed, $content);
+    top: $top;
+    left: $left;
+    padding: 4px 6px;
+
+    background: $primary-dark-deep;
+    color: white;
+    @include font-sm();
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  &:hover {
+    &::#{$pseudo} {
+      visibility: visible;
+      z-index: 30;
+      opacity: 1;
+    }
+  }
+}
+
+// sizeXYInput
+@mixin sizeXYInput(
+  $content: '',
+  $top: calc(50% + 4px),
+  $left: calc(50% - 4px),
+  $pseudo: 'after'
+) {
+  & {
+    position: relative;
+  }
+
+  &::#{$pseudo} {
+    @include pseudo(block, absolute, $content);
+    top: $top;
+    left: $left;
+  }
+}
+
+// pseudoRequired
+@mixin pseudoRequired($pseudo: 'after') {
+  &::#{$pseudo} {
+    content: ' *';
+    color: $red;
+  }
+}
+
+
+// progressbar
+@mixin progressbar {
+  margin-top: 8px;
+  background: $gray-100;
+  text-align: right;
+  border-radius: 10px;
+
+  div {
+    height: 20px;
+    padding-right: 5px;
+    background: $primary;
+    color: #fff;
+    border-radius: 10px;
+    line-height: 20px;
+  }
+  .width-p-0 {
+    width: 0;
+  }
+  .width-p-100 {
+    width: 100%;
+  }
+  div[class^='width-p-'] {
+    transition: width 0.5s ease-out;
+  }
+}

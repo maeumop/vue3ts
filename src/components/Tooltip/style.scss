@@ -1,0 +1,107 @@
+@import '@/assets/scss/abstracts/_variables.scss';
+
+.tooltip-wrap {
+  position: relative;
+  display: inline-block;
+
+  &.block {
+    display: block !important;
+  }
+
+  .icon-wrap {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      cursor: pointer;
+    }
+  }
+
+  .message-box {
+    z-index: 1000;
+    position: fixed;
+    background-color: #fff;
+    transition: all 0.2s;
+    text-align: left;
+    color: #000;
+    padding: 4px 6px;
+    border: 1px solid $gray-300;
+    box-shadow: 0 0 10px 0 rgba(#000, 0.2);
+    width: fit-content;
+
+    &.dark {
+      border-color: darken($primary, 35) !important;
+      background-color: darken($primary, 35);
+      box-shadow: none !important;
+      color: #fff;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+
+      h5 {
+        font-size: 13px;
+      }
+
+      a {
+        display: block;
+        line-height: 19px;
+        color: $gray-800;
+
+        &:hover {
+          color: map-get($theme-colors, 'danger');
+        }
+      }
+    }
+
+    .message-list {
+      li {
+        font-size: 12px;
+        font-weight: 400;
+        text-align: left !important;
+        list-style: disc;
+        margin-left: 20px;
+      }
+
+      li:not(:first-child) {
+        padding-top: 5px;
+      }
+    }
+
+    .single-message {
+      font-weight: 400;
+      font-size: 12px;
+    }
+
+    &.right {
+      margin-left: 5px;
+      text-align: left;
+    }
+
+    &.left {
+      margin-right: 5px;
+    }
+
+    &.top {
+      margin-bottom: 5px;
+    }
+
+    &.bottom {
+      margin-top: 5px;
+    }
+  }
+
+  .tooltip-enter-from,
+  .tooltip-leave-to {
+    opacity: 0;
+    margin: 0 !important;
+  }
+  .tooltip-enter-active,
+  .tooltip-leave-active {
+    transition: all 0.2s;
+  }
+}

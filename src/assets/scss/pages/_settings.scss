@@ -1,0 +1,37 @@
+// 권한 관리
+#settingsPermission {
+  position: relative;
+
+  .memberBtnWrap {
+    position: absolute;
+    top: 5px;
+    text-align: right;
+
+    .memberBtn {
+      position: relative;
+      width: 200px;
+      margin: 10px 0;
+      margin-left: 580px;
+      z-index: 10;
+    }
+  }
+
+  .list-table {
+    margin-bottom: 50px;
+    table thead th {
+      border-top: 0;
+    }
+  }
+  .tabMenu {
+    height: auto !important;
+  }
+}
+
+// API 문서
+#settingsApiDocument {
+  .subTitle {
+    padding: 15px 20px;
+    @include font-lg;
+    border-bottom: 1px solid $gray-300;
+  }
+}

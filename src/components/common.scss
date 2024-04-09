@@ -1,0 +1,85 @@
+@import '@/assets/scss/abstracts/_variables.scss';
+
+$primary: map-get($theme-colors, 'primary');
+$success: map-get($theme-colors, 'success');
+$info: map-get($theme-colors, 'info');
+$warning: map-get($theme-colors, 'warning');
+$danger: map-get($theme-colors, 'danger');
+$secondary: map-get($theme-colors, 'secondary');
+$dark: map-get($theme-colors, 'dark');
+$light: map-get($theme-colors, 'light');
+
+.block {
+  display: block !important;
+}
+
+.options-wrap {
+  display: flex;
+  justify-content: space-between;
+
+  label.input-label {
+    margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    color: $gray-800;
+    line-height: 19px;
+
+    .required {
+      color: map-get($theme-colors, 'danger');
+      font-weight: 400;
+    }
+  }
+
+  .counting {
+    margin-bottom: 4px;
+    padding: 0 6px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    line-height: 19px;
+  }
+}
+
+.feedback {
+  margin-top: 4px;
+  font-size: 0.8em;
+  color: map-get($theme-colors, 'danger');
+
+  &.error {
+    animation: shaking 0.3s;
+  }
+}
+
+/* error message shaking */
+@keyframes shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $gray-400;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $gray-100;
+    border-radius: 3px;
+  }
+}

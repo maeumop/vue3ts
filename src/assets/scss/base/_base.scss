@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* reset */
+* {margin:0; padding:0; box-sizing: border-box;}
+html {-webkit-text-size-adjust:100%; -webkit-tap-highlight-color:rgba(0,0,0,0);   scroll-behavior: smooth; font-family: "Noto Sans KR", "Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; }
+html, body {width:100%; height:100%;  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:antialiased; font-smooth:antialiased; @include scrollbar; }
+body {color: #424242; font-weight:400; line-height:1.2; font-size: 14px; overflow-y: hidden; overflow-x: overlay;}
+html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, article, aside, hgroup, header, footer, figure, figcaption, nav, section {padding:0; margin:0; box-sizing:border-box; background:transparent;}
+h1, h2, h3, h4, h5, h6 {font-weight:700;}
+ol, ul, li {list-style:none;}
+label {vertical-align:middle; cursor:pointer;}
+a {text-decoration:none; cursor:pointer; vertical-align:baseline; color:#000;}
+a:hover {text-decoration:none; outline:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after,q:before, q:after {content:'';}
+// table {border-collapse:collapse;} -> 이 옵션은 ListTable header sticky 적용시 header th에 적용된 border 옵션에 영향이 있으니 공통으로 사용하지 않습니다.
+// table, th, td {border-spacing:0;}
+address, i, em {font-style:normal;}
+legend, hr {display:none;}
+caption {visibility:hidden; width:0; height:0; font-size:0; line-height:0;}
+img, fieldset {border:0;}
+img {max-width:100%; border:0; vertical-align:top;}
+button, input, optgroup, select, textarea {font:inherit; color:inherit;}
+button {overflow:visible; cursor:pointer; line-height:1; border:0; background:transparent;}
+textarea {resize:vertical; font:inherit; overflow-y:auto;}
+input, select, optgroup {vertical-align:middle; line-height:normal;}
+input, textarea, select {border-radius:0; box-shadow:none;}
+button, select {text-transform:none;}
+select {-webkit-appearance:none;}
+select::-ms-expand {display:none;}
+a, button, input, img {outline:none;}
+button, input[type=button], input[type=reset], input[type=submit] {margin:0; padding:0; -webkit-appearance:button; cursor:pointer; background:none;}
+button:disabled, input[type=button]:disabled, input[type=reset]:disabled, input[type=submit]:disabled {cursor:default;}
+button::-moz-focus-inner, input::-moz-focus-inner {border:0; padding:0;}
+button:active, button:active > * {-ms-transform:translate(-1px, -1px);}
+button:active:before, button:active:after {-ms-transform:translate(1px, 1px);}
+input[type=number]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {-webkit-appearance:none; margin:0; height:auto;}
+input[type=search] {-webkit-appearance:textfield;}
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {-webkit-appearance:none;}
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}

@@ -1,0 +1,80 @@
+// 도메인, 알리고 API
+#myApp {
+  .appContent {
+    margin-bottom: 20px;
+    background: #fff;
+    border: 1px solid $gray-300;
+  }
+
+  .subTitle {
+    padding: 15px 20px;
+    @include font-lg;
+    border-bottom: 1px solid $gray-300;
+  }
+
+  .mainContent {
+    margin: 20px;
+  }
+
+  .mainLabel {
+    margin-left: 5px;
+    padding: 2px 5px;
+    border: 1px solid $primary;
+    color: $primary;
+    @include font-xs;
+  }
+
+  .connect {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .pointBox {
+    @include flex_center_between;
+    margin-top: 50px;
+    padding: 20px;
+    border-top: 1px solid $gray-300;
+    background-color: #fff;
+  }
+
+  .list-table {
+    tr {
+      cursor: pointer;
+    }
+  }
+}
+
+.infoBox {
+  width: 800px;
+  background: $gray-100;
+  border: 1px solid $primary-light;
+  @include font-m;
+  margin: 0 auto;
+  line-height: 19px;
+  color: $primary;
+  background: $info-box-bg !important;
+
+  ul {
+    @include font-sm;
+    padding: 10px 20px 20px 32px;
+
+    li {
+      list-style: outside;
+      list-style-type: decimal;
+    }
+  }
+}
+
+// 템플릿
+#myAppTemplate {
+  .searchArea {
+    @include flex_center_between;
+    padding: 10px 16px;
+    border-bottom: 1px solid $gray-300;
+
+    .input-wrap .with-slot input + * {
+      margin-right: 0 !important;
+    }
+  }
+}

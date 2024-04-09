@@ -1,0 +1,626 @@
+#editorContent {
+  .tools {
+    border: 1px solid $gray-300;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: $gray-100;
+    flex-wrap: wrap;
+    position: relative;
+
+    .box {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      height: 31px;
+      color: rgb(71, 71, 71);
+      margin-right: 5px;
+      padding: 0 5px;
+    }
+
+    .sector {
+      display: flex;
+      align-items: center;
+
+      &:not(:last-child):after {
+        display: block;
+        content: '';
+        height: 18px;
+        width: 2px;
+        margin: 0 8px 0 3px;
+        box-sizing: border-box;
+        border-right: 1px solid #fff;
+        background-color: rgb(191, 191, 191);
+      }
+    }
+
+    .in-editor {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+      width: 24px;
+      height: 24px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 5px;
+      width: 31px;
+      height: 31px;
+      text-align: center;
+      color: rgb(71, 71, 71);
+      font-size: 17px;
+      text-decoration: none;
+
+      &.active {
+        background-color: rgb(230, 230, 230);
+      }
+
+      &.disabled {
+        color: rgb(211, 211, 211);
+      }
+
+      &:hover:not(.active) {
+        background-color: rgb(240, 240, 240);
+      }
+    }
+
+    .button-group {
+      margin-right: 5px;
+      display: flex;
+
+      a {
+        margin-right: 0;
+        margin-left: -1px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          border-radius: 0;
+        }
+      }
+    }
+
+    select {
+      outline: none;
+      appearance: auto !important;
+      border: 1px solid $gray-300;
+    }
+
+    .seperator-line {
+      width: 100%;
+      margin: 2px 0;
+    }
+  }
+
+  .editro-wrap {
+    overflow: hidden;
+  }
+
+  .ProseMirror {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100%;
+    padding: 10px;
+    outline: none !important;
+    color: #000 !important;
+    border-color: $gray-300;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    overflow-y: auto;
+    font-size: 16px;
+
+    h1 {
+      font-size: 2em;
+      font-weight: 700;
+    }
+    h2 {
+      font-size: 1.5em;
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 1.17em;
+      font-weight: 700;
+    }
+    h4 {
+      font-weight: 700;
+    }
+    h5 {
+      font-size: 0.83em;
+      font-weight: 700;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    p {
+      margin:0.35em 0 0.15em;
+      font-size:16px;
+      line-height: 1.6;
+    }
+    em {
+      font-style: italic;
+    }
+    a {
+      text-decoration: underline;
+      color: blue;
+    }
+
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+      border:2px solid #333;
+
+      td {
+        min-width: 1em;
+        border: 1px solid #ced4da;
+        padding: 3px 5px;
+        vertical-align: top;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      th {
+        min-width: 1em;
+        border: 1px solid #ced4da;
+        padding: 3px 5px;
+        vertical-align: top;
+        box-sizing: border-box;
+        position: relative;
+        font-weight: bold;
+        text-align: left;
+        background-color: #f1f3f5;
+      }
+
+      p {
+        margin:1em 0 0.5em;
+        font-size:16px;
+        line-height:1.4;
+        &::after {
+          content:'\00a0';
+        }
+      }
+
+      .selectedCell:after {
+        z-index: 2;
+        position: absolute;
+        content: "";
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(200, 200, 255, 0.4);
+      }
+
+      .column-resize-handle {
+        position: absolute;
+        right: -2px;
+        top: 0;
+        bottom: -2px;
+        width: 4px;
+        background-color: #adf;
+        cursor: col-resize !important;
+      }
+    }
+  }
+
+  blockquote {
+    margin-left: 1em;
+    padding-left: 1rem;
+    border-left: 3px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .input-tools {
+    display: block;
+    position: relative;
+
+    .input-layer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(77, 77, 77);
+      font-size: 14px;
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid rgb(162, 162, 162);
+      padding: 10px;
+      top: 28px;
+      margin-top: 5px;
+      z-index: 100;
+      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+      width: 310px;
+    }
+
+    &.image .input-layer > div:not(:last-child),
+    &.link .input-layer > div:not(:last-child) {
+      margin-bottom: 5px;
+    }
+
+    .input-layer input {
+      border: 1px solid rgb(163, 163, 163);
+      width: 40px;
+      padding: 0 5px;
+      margin-right: 10px;
+      font-size: 12px;
+      height: 24px;
+      outline: none;
+      color: rgb(77, 77, 77);
+    }
+
+    &.image .input-layer input,
+    &.link .input-layer input {
+      width: 150px;
+    }
+
+    .input-layer .create-button {
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      width: 60px !important;
+      height: 24px !important;
+      line-height: 22px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  .input-layer .create-button:hover {
+    background-color: #555 !important;
+  }
+
+  .tools {
+    a.text-icon {
+      width: auto !important;
+      font-size: 12px;
+      padding: 0 8px;
+    }
+
+    .table-tools {
+      display: flex;
+      align-items: center;
+
+      a {
+        height: 31px;
+        width: 31px;
+        color: rgb(71, 71, 71);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        margin: 0 !important;
+      }
+
+      > {
+        div {
+          position: relative;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            background-color: rgb(240, 240, 240);
+          }
+        }
+      }
+
+      .drop-down-menu {
+        transform-origin: top center;
+        position: absolute;
+        left: -33px;
+        top: calc(100% + 5px);
+        background-color: #fff;
+        z-index: 10;
+        width: 110px;
+        border: 1px solid rgb(231, 231, 231);
+        box-sizing: border-box;
+        padding: 5px;
+
+        a {
+          display: block;
+          font-size: 12px;
+          line-height: 31px;
+          height: 31px;
+          margin: 0;
+
+          &.disabled {
+            color: rgb(211, 211, 211);
+          }
+        }
+      }
+    }
+  }
+
+  .editor-wrap {
+    ul {
+      padding-left: 15px;
+      margin-left: 15px;
+
+      li {
+        list-style: disc;
+      }
+    }
+
+    ol {
+      padding-left: 15px;
+      margin-left: 15px;
+
+      li {
+        list-style: decimal;
+      }
+    }
+  }
+}
+
+.box-scale-enter-from, .box-scale-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.box-scale-enter-active, .box-scale-leave-active {
+  transition: all .1s linear;
+}
+
+#fileUploader {
+  .scale-enter, .scale-leave-to {
+    transform: scale(0);
+  }
+
+  .scale-enter-active, .scale-leave-active {
+    transition: transform .2s linear;
+  }
+
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform-origin: right bottom;
+
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    background-color: #ff5252;
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .upload {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    box-sizing: border-box;
+    background-color: #5cbbf6;
+    color: #fff;
+    text-align: center;
+    font-size: 38px;
+  }
+
+  .drop-area {
+    border: 3px dashed rgb(88, 88, 88);
+    box-sizing: border-box;
+    color: rgb(59, 59, 59);
+    font-size: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 auto;
+    width: calc(100vw - 200px);
+    height: calc(100vh - 200px);
+    margin: 100px;
+    background-color: rgba(255, 255, 255, 1);
+    position: relative;
+    padding: 20px;
+
+    .area-info {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-icon {
+      font-size: 400px;
+      margin-bottom: 20px;
+    }
+
+    .upload-list {
+      width: 100%;
+      height: 100%;
+      flex-direction: row;
+
+      &::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+
+      .file-box {
+        width: 160px;
+        height: 160px;
+        box-sizing: border-box;
+        border: 1px solid #c4c4c4;
+        float: left;
+        margin: 10px;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+
+        &.duple {
+          border: 2px solid #ff5252 !important;
+        }
+
+        &:hover {
+          background-color: #f3f3f3;
+        }
+
+        .box {
+          width: 100% !important;
+          height: 90px;
+          line-height: 90px !important;
+          overflow: hidden;
+          margin: 0 auto;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          i {
+            color: gold;
+            font-size: 60px;
+          }
+
+          img {
+            max-width: 100%;
+          }
+        }
+
+        .size {
+          font-size: 13px;
+          margin-top: 5px;
+        }
+
+        .progress {
+          width: 100%;
+          background-color: #bebebe;
+          height: 10px;
+          margin-top: 5px;
+
+          .gage {
+            width: 0;
+            height: 10px;
+            background-color: gold;
+            transition: width .1s;
+
+            &.fail {
+              background-color: red;
+            }
+          }
+        }
+
+        .remove-file {
+          position: absolute;
+          display: block;
+          right: -10px;
+          top: -10px;
+          background-color: #ff5252;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          text-decoration: none;
+
+          &::after {
+            color: #fff;
+            content: '\f00d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 700;
+            font-size: 17px;
+            display: block;
+            margin-top: 1px;
+          }
+        }
+      }
+    }
+  }
+
+  input[type=file] {
+    position: absolute;
+    top: -100%;
+  }
+
+  .upload-input {
+    height: 50px;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .file-list {
+      width: calc(100% - 100px);
+      height: 50px;
+      padding-left: 15px;
+      font-size: .9em;
+      color: rgb(156, 156, 156);
+      overflow-y: auto;
+      border: 1px solid #dadada;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    button {
+      width: 100px;
+      border: 1px solid rgb(126, 126, 126);
+      border-left: 0 !important;
+      font-size: .8em;
+      height: 50px;
+      line-height: 50px;
+      box-sizing: border-box;
+      background-color: rgb(126, 126, 126);
+      color: #fff;
+    }
+
+    .file-list {
+      .no-list {
+        display: inline-block;
+      }
+
+      .list-item {
+        display: inline-block;
+        background-color: rgb(119, 119, 119);
+        color: #fff;
+        height: 30px;
+        line-height: 30px;
+        font-size: .8em;
+        padding: 0 15px;
+        max-width: 120px;
+        position: relative;
+
+        + .list-item {
+          margin-left: 10px;
+        }
+
+        a {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 30px;
+          height: 30px;
+          line-height: 22px;
+          color: #fff;
+          background-color: #000;
+          text-align: center;
+          font-size: 15px;
+          font-weight: bold;
+          border: 4px solid rgb(119, 119, 119);
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}

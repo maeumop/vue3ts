@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/earlyaccess/notosanskr.css");
+
+.font-head {
+  @include font-head;
+}
+.font-xl {
+  @include font-xl;
+}
+.font-lg {
+  @include font-lg;
+}
+.font-m-2 {
+  @include font-m-2;
+}
+.font-m {
+  @include font-m;
+}
+.font-m-bold {
+  @include font-m-bold;
+}
+.font-sm {
+  @include font-sm;
+}
+.font-xs {
+  @include font-xs;
+}
+
+
+.text-point {
+  color: $primary;
+}
+.text-white {
+  color: #fff;
+}
+.text-red {
+  color: $red;
+}
+.text-green {
+  color: $green;
+}
+.text-orange {
+  color: $orange;
+}
+
+.text-gray-800 {
+  color: $gray-800;
+}
+.text-gray-700 {
+  color: $gray-700;
+}
+.text-gray-600 {
+  color: $gray-600;
+}
+.text-gray-500 {
+  color: $gray-500;
+}
+.text-gray-400 {
+  color: $gray-400;
+}
+.text-gray-300 {
+  color: $gray-300;
+}
+.text-gray-200 {
+  color: $gray-200;
+}
+.text-gray-100 {
+  color: $gray-100;
+}
+.text-gray-50 {
+  color: $gray-50;
+}
+
+.text-size-head {
+  font-size: $font-head-size;
+}
+.text-size-xs {
+  font-size: $font-xs-size;
+}
+.text-size-sm {
+  font-size: $font-sm-size;
+}
+.text-size-m {
+  font-size: $font-m-size;
+}
+.text-size-m-2 {
+  font-size: $font-m-2-size;
+}
+.text-size-lg {
+  font-size: $font-lg-size;
+}
+.text-size-xl {
+  font-size: $font-xl-size;
+}
